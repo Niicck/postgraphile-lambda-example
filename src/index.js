@@ -3,6 +3,7 @@ const cors = require('cors');
 const { postgraphile } = require('postgraphile');
 const { options } = require('./postgraphileOptions');
 const combineMiddlewares = require('./combineMiddlewares');
+import readCache from './postgraphile.cache';
 
 const schemas = process.env.DATABASE_SCHEMAS
   ? process.env.DATABASE_SCHEMAS.split(',')
@@ -32,7 +33,7 @@ const app = combineMiddlewares([
   postgraphile(process.env.DATABASE_URL, schemas, {
     graphqlRoute: '/',
     ...options,
-    readCache: `${__dirname}/postgraphile.cache`,
+    readCache,
   }),
 ]);
 
