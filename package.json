@@ -6,8 +6,10 @@
     "phase3": ". ./.env && scripts/bundle",
     "phase4": ". ./.env && scripts/test",
     "build": ". ./.env && scripts/build && scripts/generate-cache && scripts/bundle",
+    "build-serverless": ". ./.env && scripts/build && scripts/generate-cache && scripts/bundle-serverless.sh",
     "sam": ". ./.env && scripts/build && scripts/generate-cache && scripts/bundle && scripts/sam",
-    "test": ". ./.env && scripts/build && scripts/generate-cache && scripts/bundle && scripts/test"
+    "test": ". ./.env && scripts/build && scripts/generate-cache && scripts/bundle && scripts/test",
+    "sls-deploy": "scripts/serverless.sh"
   },
   "dependencies": {
     "cors": "^2.8.5",

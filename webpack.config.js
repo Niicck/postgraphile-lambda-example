@@ -4,12 +4,12 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { options: postgraphileOptions } = require('./src/postgraphileOptions.js');
 
 module.exports = {
-  // output: {
-  //   path: path.resolve(__dirname, 'dist'),
-  //   filename: 'face.js',
-  //   library: '',
-  //   libraryTarget: 'commonjs',
-  // },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index.js',
+    library: '',
+    libraryTarget: 'commonjs',
+  },
   mode: 'production',
   target: 'node',
   plugins: [
@@ -36,24 +36,6 @@ module.exports = {
   ],
   node: {
     __dirname: false, // just output `__dirname`
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      },
-      {
-        test: /\.cache$/,
-        use: 'raw-loader'
-      }
-    ]
   },
   optimization: {
     minimizer: [

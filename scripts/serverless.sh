@@ -16,14 +16,12 @@ if [ "$DATABASE_URL" = "" ]; then
   exit 1
 fi
 
-mkdir $CURRENT_DIR/../cache
-mkdir $CURRENT_DIR/../dist
+echo "Create Package"
+sls package -p build -v
 
-echo "Generate cache"
-scripts/generate-cache
+yarn build-serverless
 
 echo "Create S3 Bucket"
 node scripts/createS3Bucket.js
 
-echo "Deploy"
-sls deploy -v
+serverless deploy -p build -v

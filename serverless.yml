@@ -2,16 +2,10 @@ service: ${env:AWS_SERVICE_NAME}
 
 plugins:
   - serverless-content-encoding
-  - serverless-webpack
 
 custom:
   contentEncoding:
     minimumCompressionSize: 0
-  webpack:
-    webpackConfig: 'webpack.config.js'
-    packager: 'yarn'
-    keepOutputDirectory: true
-  true: true
 
 package:
   individually: true
@@ -23,17 +17,17 @@ provider:
     name: ${env:AWS_SERVICE_NAME}
   region: ${env:AWS_REGION}
   stage: ${env:AWS_STAGE}
+  versionFunctions: false # TODO: remove this
 
 functions:
   graphql:
-    handler: src/index.handler
+    handler: index.handler
     events:
       - http:
           method: post
           path: graphql
           cors: true
-          integration: lambda
+          integration: lambda-proxy
     environment:
       DATABASE_URL: ${env:DATABASE_URL}
       DATABASE_SCHEMAS: ${env:DATABASE_SCHEMAS}
-      SLS: ${self:custom.true}
