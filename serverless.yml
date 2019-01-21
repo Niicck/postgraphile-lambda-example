@@ -17,11 +17,10 @@ provider:
     name: ${env:AWS_SERVICE_NAME}
   region: ${env:AWS_REGION}
   stage: ${env:AWS_STAGE}
-  versionFunctions: false # TODO: remove this
 
 functions:
   graphql:
-    handler: index.handler
+    handler: index.handler # Actual handler substituted in during deploy script
     events:
       - http:
           method: post

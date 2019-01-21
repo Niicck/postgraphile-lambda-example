@@ -16,7 +16,7 @@ const app = combineMiddlewares([
    */
 
   // CORS middleware to permit cross-site API requests. Configure to taste
-  cors(),
+  // cors(),
 
   // Determines the effective URL we are at if `absoluteRoutes` is set
   (req, res, next) => {
@@ -34,7 +34,6 @@ const app = combineMiddlewares([
     next();
   },
   postgraphile(process.env.DATABASE_URL, schemas, {
-    graphqlRoute: '/',
     ...options,
     readCache: `${__dirname}/postgraphile.cache`,
   }),

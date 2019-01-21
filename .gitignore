@@ -4,5 +4,5 @@
 /dist
 /test/template.yml
 /lambda.zip
-/build/
+/.serverless/
 .DS_Store
