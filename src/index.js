@@ -1,5 +1,4 @@
 const awsServerlessExpress = require('aws-serverless-express');
-const cors = require('cors');
 const { postgraphile } = require('postgraphile');
 const { options } = require('./postgraphileOptions');
 const combineMiddlewares = require('./combineMiddlewares');
@@ -14,9 +13,6 @@ const app = combineMiddlewares([
    *
    * This is typically useful for augmenting the request before it goes to PostGraphile.
    */
-
-  // CORS middleware to permit cross-site API requests. Configure to taste
-  // cors(),
 
   // Determines the effective URL we are at if `absoluteRoutes` is set
   (req, res, next) => {
